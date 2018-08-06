@@ -9,9 +9,10 @@ module Eff.MockSpec where
 import           Control.Exception    (evaluate)
 import           Data.GADT.Compare.TH (deriveGEq)
 import           Data.GADT.Show.TH    (deriveGShow)
-import           Data.Open.Union      (Union, inj)
-import           Eff                  (Eff, Member, send)
-import           Eff.Mock             (pattern (:->), DSumI, runMock, runMockU)
+import           Data.OpenUnion       (Union, inj)
+import           Control.Eff          (Eff, Member)
+import           Control.Eff.Extend   (send)
+import           Control.Eff.Mock     (pattern (:->), DSumI, runMock, runMockU)
 import           Test.Hspec
 
 --------------------------------------------------------------------------------

@@ -5,22 +5,23 @@
 {-# LANGUAGE PatternSynonyms  #-}
 {-# LANGUAGE TypeFamilies     #-}
 
-module Eff.Mock
-  ( module Eff.Mock
+module Control.Eff.Mock
+  ( module Control.Eff.Mock
   , inj
   )where
 
-import           Control.Monad.State   (State, runState)
-import qualified Control.Monad.State   as State
-import           Data.Dependent.Sum    (DSum (..))
-import           Data.Functor.Identity (Identity (..))
-import           Data.GADT.Compare     ((:~:) (Refl), GEq, geq)
-import           Data.GADT.Show        (GShow, gshow)
-import           Data.Open.Union       (Union, inj)
-import           Data.Open.Union.Extra ()
-import           Eff                   (Arr, Eff, run)
-import           Eff.Extra.Fold        (foldEffM)
-import qualified Eff.Internal          as EI
+import           Control.Monad.State    (State, runState)
+import qualified Control.Monad.State    as State
+import           Data.Dependent.Sum     (DSum (..))
+import           Data.Functor.Identity  (Identity (..))
+import           Data.GADT.Compare      ((:~:) (Refl), GEq, geq)
+import           Data.GADT.Show         (GShow, gshow)
+import           Data.OpenUnion         (Union, inj)
+import           Data.OpenUnion.Extra   ()
+import           Control.Eff            (Eff, run)
+import           Control.Eff.Extend     (Arr)
+import qualified Control.Eff.Extend     as EE
+import           Control.Eff.Extra.Fold (foldEffM)
 --------------------------------------------------------------------------------
                         -- Machinery --
 --------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ Example usage:
 -}
 runMock :: (GShow f, GEq f) => [DSumI f] -> Eff '[f] w -> w
 runMock actions req =
-  verify $ run (EI.handleRelayS actions (\s a -> pure (a, s)) go req)
+  verify $ run (EE.handle_relay_s actions (\s a -> pure (a, s)) go req)
   where
     go :: (GShow f, GEq f) =>
       [DSumI f]

@@ -4,11 +4,11 @@
 {-# LANGUAGE TypeOperators     #-}
 {-# OPTIONS_GHC -Wno-orphans #-} -- GEq and GShow for Union
 
-module Data.Open.Union.Extra where
+module Data.OpenUnion.Extra where
 
 import           Data.GADT.Compare (GEq, geq)
 import           Data.GADT.Show    (GShow, gshowsPrec)
-import           Data.Open.Union   (Union, decomp)
+import           Data.OpenUnion    (Union, decomp)
 
 instance GEq (Union '[]) where
   geq _ = elimEmptyUnion

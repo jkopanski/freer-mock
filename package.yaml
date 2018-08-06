@@ -1,4 +1,4 @@
-name:                freer-mock
+name:                extensible-effects-mock
 version:             1.0.0
 license:             ISC
 author:              "Restaumatic Team"
@@ -20,7 +20,7 @@ description:         Please see the README on GitHub at <https://github.com/rest
 
 dependencies:
 - base >= 4.7 && < 5
-- freer
+- extensible-effects
 - mtl
 - constraints
 - dependent-sum
@@ -29,7 +29,7 @@ dependencies:
 library:
   source-dirs: src
   exposed-modules:
-  - Eff.Mock
+  - Control.Eff.Mock
 
 tests:
   freer-mock-test:
@@ -40,5 +40,5 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - freer-mock
+    - extensible-effects-mock
     - hspec
